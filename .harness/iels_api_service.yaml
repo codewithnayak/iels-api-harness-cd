@@ -3,3 +3,43 @@ service:
   identifier: iels_api_service
   orgIdentifier: default
   projectIdentifier: default_project
+  serviceDefinition:
+    spec:
+      manifests:
+        - manifest:
+            identifier: iels_permission_manifest
+            type: HelmChart
+            spec:
+              store:
+                type: Github
+                spec:
+                  connectorRef: harnessgithubcon
+                  gitFetchType: Branch
+                  folderPath: /helm-charts/app-permission
+                  repoName: iels-api-harness-cd
+                  branch: main
+              subChartPath: ""
+              skipResourceVersioning: false
+              enableDeclarativeRollback: false
+              helmVersion: V3
+              fetchHelmChartMetadata: false
+        - manifest:
+            identifier: iels_service_manifest
+            type: HelmChart
+            spec:
+              store:
+                type: Github
+                spec:
+                  connectorRef: harnessgithubcon
+                  gitFetchType: Branch
+                  folderPath: /helm-charts/app-service
+                  repoName: iels-api-harness-cd
+                  branch: main
+              subChartPath: ""
+              skipResourceVersioning: false
+              enableDeclarativeRollback: false
+              helmVersion: V3
+              fetchHelmChartMetadata: false
+      manifestConfigurations:
+        primaryManifestRef: <+input>
+    type: Kubernetes
