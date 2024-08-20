@@ -1,0 +1,5 @@
+service:
+  name: iels_test_service
+  identifier: iels_test_service
+  orgIdentifier: default
+  projectIdentifier: default_project
