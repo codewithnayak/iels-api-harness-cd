@@ -3,3 +3,24 @@ service:
   identifier: iels_api_service_multi
   orgIdentifier: default
   projectIdentifier: default_project
+  serviceDefinition:
+    spec:
+      manifests:
+        - manifest:
+            identifier: iels_servcie_multi
+            type: HelmChart
+            spec:
+              store:
+                type: Github
+                spec:
+                  connectorRef: harnessgithubcon
+                  gitFetchType: Branch
+                  folderPath: /helm-charts/app-service
+                  repoName: iels-api-harness-cd
+                  branch: main
+              subChartPath: ""
+              skipResourceVersioning: false
+              enableDeclarativeRollback: false
+              helmVersion: V3
+              fetchHelmChartMetadata: false
+    type: Kubernetes
