@@ -1,0 +1,13 @@
+infrastructureDefinition:
+  name: iels_infra_def
+  identifier: iels_infra_def
+  orgIdentifier: default
+  projectIdentifier: default_project
+  environmentRef: harnessdevenv
+  deploymentType: Kubernetes
+  type: KubernetesDirect
+  spec:
+    connectorRef: harnessk8connector
+    namespace: iels-dev
+    releaseName: release-<+INFRA_KEY_SHORT_ID>
+  allowSimultaneousDeployments: false
