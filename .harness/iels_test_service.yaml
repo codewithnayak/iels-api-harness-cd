@@ -3,3 +3,30 @@ service:
   identifier: iels_test_service
   orgIdentifier: default
   projectIdentifier: default_project
+  serviceDefinition:
+    spec:
+      variables:
+        - name: release_tag
+          type: String
+          description: It will be set as release version
+          required: true
+          value: ""
+      manifests:
+        - manifest:
+            identifier: iels_test_service_manifest
+            type: HelmChart
+            spec:
+              store:
+                type: Github
+                spec:
+                  connectorRef: harnessgithubcon
+                  gitFetchType: Branch
+                  folderPath: /helm-charts/app-servcie
+                  repoName: iels-api-harness-cd
+                  branch: main
+              subChartPath: ""
+              skipResourceVersioning: false
+              enableDeclarativeRollback: false
+              helmVersion: V3
+              fetchHelmChartMetadata: false
+    type: NativeHelm
