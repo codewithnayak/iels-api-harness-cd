@@ -1,0 +1,5 @@
+service:
+  name: iels_api_service
+  identifier: iels_api_service
+  orgIdentifier: default
+  projectIdentifier: default_project
